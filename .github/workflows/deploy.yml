@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # Fetch full history to avoid shallow clone issues
+
     - name: Clean Git state
       run: |
         git reset --hard HEAD
@@ -18,12 +23,8 @@ jobs:
     - name: Fetch full history
       run: git fetch --all --tags --prune
 
-    - uses: actions/checkout@v3
-      with:
-        persist-credentials: false
-        fetch-depth: 0
-
-    - uses: actions/setup-node@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
         node-version: '20'
 
