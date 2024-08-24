@@ -1,29 +1,22 @@
-name: Deploy to GitHub Pages
+name: Deploy React App
 
 on:
   push:
     branches:
-      - main
+      - main  # Deploy on push to main branch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        fetch-depth: 0 # Ensure full history is fetched
-
-    - name: Clean Git state
-      run: |
-        git reset --hard HEAD
-        git clean -fdx
 
     - name: Install dependencies
       run: npm install
 
-    - name: Build the project
+    - name: Build project
       run: npm run build
 
     - name: Deploy to GitHub Pages
