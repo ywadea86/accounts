@@ -45,6 +45,7 @@
   "devDependencies": {
     "gh-pages": "^6.1.1"
   },
-  "homepage": "https://ywadea86.github.io/accounts"
+  "homepage": "https://ywadea86.github.io/accounts",
+  "proxy": "http://34.154.248.175:7000"
 
 }
