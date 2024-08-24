@@ -13,25 +13,20 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0 # Fetch full history to avoid shallow clone issues
+        fetch-depth: 0 # Ensure full history is fetched
 
     - name: Clean Git state
       run: |
         git reset --hard HEAD
         git clean -fdx
 
-    - name: Fetch full history
-      run: git fetch --all --tags --prune
+    - name: Install dependencies
+      run: npm install
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+    - name: Build the project
+      run: npm run build
 
-    - run: npm install
-    - run: npm run build
-
-    - name: Deploy
+    - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
