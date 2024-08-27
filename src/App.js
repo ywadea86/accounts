@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import AccountForm from './components/AccountForm';
 import AccountList from './components/AccountList';
+import UploadForm from './components/UploadForm';
+
 const API_URL = process.env.REACT_APP_API_URL;
+
 const App = () => {
   const [accounts, setAccounts] = useState([]);
   const [selectedAccount, setSelectedAccount] = useState(null);
@@ -49,6 +52,9 @@ const App = () => {
         setAccounts={setAccounts}
         fetchAccounts={fetchAccounts}
       />
+
+      {/* Include the UploadForm component */}
+      <UploadForm onUploadSuccess={fetchAccounts} />
     </div>
   );
 };
