@@ -16,7 +16,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
@@ -43,9 +42,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.1.1"
   },
   "homepage": "https://ywadea86.github.io/accounts",
   "proxy": "http://34.154.248.175:7000"
-
 }
