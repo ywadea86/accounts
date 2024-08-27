@@ -3,16 +3,15 @@ import axios from 'axios';
 
 const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
   const [hitCount, setHitCount] = useState(0);
   const [idUser, setIdUser] = useState('');
   const [errorMessage, setErrorMessage] = useState(''); // State for error messages
   const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     if (selectedAccount) {
       setEmail(selectedAccount.email);
-      setPassword(selectedAccount.password);
       setIsDisabled(selectedAccount.is_disabled);
       setHitCount(selectedAccount.hit_count);
       setIdUser(selectedAccount.id_user);
@@ -27,7 +26,7 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
 
     const accountData = {
       email,
-      password,
+      password: "123456A@s", // Default password
       is_disabled: isDisabled,
       hit_count: hitCount,
       id_user: idUser,
@@ -70,7 +69,6 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
 
   const resetForm = () => {
     setEmail('');
-    setPassword('');
     setIsDisabled(false);
     setHitCount(0);
     setIdUser('');
@@ -91,17 +89,6 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
               placeholder="Enter Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
