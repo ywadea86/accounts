@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState(''); // New state for password
   const [isDisabled, setIsDisabled] = useState(false);
   const [hitCount, setHitCount] = useState(0);
   const [idUser, setIdUser] = useState('');
@@ -12,6 +13,7 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
   useEffect(() => {
     if (selectedAccount) {
       setEmail(selectedAccount.email);
+      setPassword(''); // Clear the password field for security reasons
       setIsDisabled(selectedAccount.is_disabled);
       setHitCount(selectedAccount.hit_count);
       setIdUser(selectedAccount.id_user);
@@ -26,7 +28,7 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
 
     const accountData = {
       email,
-      password: "P@ssw0rd@123", // Default password
+      password: password || "P@ssw0rd@123", // Use the provided password or default
       is_disabled: isDisabled,
       hit_count: hitCount,
       id_user: idUser,
@@ -69,6 +71,7 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
 
   const resetForm = () => {
     setEmail('');
+    setPassword(''); // Reset password field
     setIsDisabled(false);
     setHitCount(0);
     setIdUser('');
@@ -90,6 +93,16 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+            />
+          </div>
+          <div className="mb-3">
+            <label>Password</label> {/* Password input field */}
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="mb-3">
