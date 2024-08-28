@@ -28,7 +28,7 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
 
     const accountData = {
       email,
-      password: password || "P@ssw0rd@123", // Use the provided password or default
+      password: password , // Use the provided password or default
       is_disabled: isDisabled,
       hit_count: hitCount,
       id_user: idUser,
