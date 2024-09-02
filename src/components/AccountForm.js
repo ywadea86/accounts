@@ -13,7 +13,7 @@ const AccountForm = forwardRef(({ selectedAccount, onSave }, ref) => {
   useEffect(() => {
     if (selectedAccount) {
       setEmail(selectedAccount.email);
-      setPassword(''); // Clear the password field for security reasons
+      setPassword(selectedAccount.password); // Clear the password field for security reasons
       setIsDisabled(selectedAccount.is_disabled);
       setHitCount(selectedAccount.hit_count);
       setIdUser(selectedAccount.id_user);
