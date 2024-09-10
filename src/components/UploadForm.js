@@ -28,7 +28,7 @@ const UploadForm = ({ onUploadSuccess }) => {
       const response = await axios.post(`${API_URL}/upload-excel`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          httpsAgent: new https.Agent({ rejectUnauthorized: false })
+   
         },
        
       });
