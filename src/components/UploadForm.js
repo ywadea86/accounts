@@ -29,6 +29,7 @@ const UploadForm = ({ onUploadSuccess }) => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        httpsAgent: new https.Agent({ rejectUnauthorized: false })
       });
 
       if (response.status === 200) {
