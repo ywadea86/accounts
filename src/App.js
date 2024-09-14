@@ -3,6 +3,7 @@ import axios from 'axios';
 import AccountForm from './components/AccountForm';
 import AccountList from './components/AccountList';
 import UploadForm from './components/UploadForm';
+import AccountSend from './components/VisaApplication'; // Import Visa Application component
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -35,26 +36,54 @@ const App = () => {
   }, []);
 
   return (
-    <div className="container">
-      <h1>Account Management</h1>
+    <div className="container my-5">
+      <div className="row">
+        {/* Left Column: Account Form and UploadForm/VisaApplication */}
+        <div className="col-md-6 mb-4">
+          {/* Account Form */}
+          <div className="card shadow-sm border-primary mb-4">
+            <div className="card-body">
+              <h3 className="card-title">{selectedAccount ? 'Edit Account' : 'Create Account'}</h3>
+              <AccountForm
+                selectedAccount={selectedAccount}
+                onSave={fetchAccounts}
+                ref={formRef}
+              />
+            </div>
+          </div>
 
-      {/* Pass the form reference to the AccountForm */}
-      <AccountForm
-        selectedAccount={selectedAccount}
-        onSave={fetchAccounts}
-        ref={formRef}
-      />
+          {/* Upload Documents */}
+          <div className="card shadow-sm border-success mb-4">
+            <div className="card-body">
+              <h3 className="card-title">Upload Documents</h3>
+              <UploadForm onUploadSuccess={fetchAccounts} />
+            </div>
+          </div>
 
-      {/* Pass both setAccounts and fetchAccounts to AccountList */}
-      <AccountList
-        accounts={accounts}
-        onEdit={handleEdit}
-        setAccounts={setAccounts}
-        fetchAccounts={fetchAccounts}
-      />
+          {/* Visa Application */}
+          <div className="card shadow-sm border-info">
+            <div className="card-body">
+              <h3 className="card-title">Submit Visa Application</h3>
+              <AccountSend /> {/* Render Visa Application form */}
+            </div>
+          </div>
+        </div>
 
-      {/* Include the UploadForm component */}
-      <UploadForm onUploadSuccess={fetchAccounts} />
+        {/* Right Column: Account List */}
+        <div className="col-md-6 mb-4">
+          <div className="card shadow-sm border-secondary">
+            <div className="card-body">
+              <h3 className="card-title">Account List</h3>
+              <AccountList
+                accounts={accounts}
+                onEdit={handleEdit}
+                setAccounts={setAccounts}
+                fetchAccounts={fetchAccounts}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
