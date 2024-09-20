@@ -253,7 +253,18 @@ const App = () => {
           {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
           {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
         </div>
+{/* Delete All Accounts */}
+<div className="mt-4">
+            <button onClick={handleDeleteAllAccounts} className="btn btn-danger w-100">
+              Delete All Accounts
+            </button>
+          </div>
 
+          {/* Success and Error Messages */}
+          {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+          {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+        </div>
+        
         {/* Right Column: Account List */}
         <div className="col-md-6 mb-4">
           <div className="card shadow-sm border-secondary">
@@ -267,7 +278,8 @@ const App = () => {
               />
             </div>
           </div>
-        </div>
+        
+        
       </div>
     </div>
   );
